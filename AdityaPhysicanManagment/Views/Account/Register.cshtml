@@ -1,0 +1,102 @@
+﻿@model AdityaPhysicanManagment.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+<form asp-action="Register" method="post">
+    <div class="form-group mb-3">
+        <label asp-for="UserName" class="form-label"></label>
+        <input asp-for="UserName" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" type="email" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ConfirmPassword" class="form-label"></label>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" required />
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Role" class="form-label"></label>
+        <select asp-for="Role" class="form-control">
+            <option value="Patient">Patient</option>
+            <option value="Physician">Physician</option>
+        </select>
+    </div>
+
+    <!-- Patient-specific fields -->
+    <div id="patientFields">
+        <div class="form-group mb-3">
+            <label asp-for="PatientName" class="form-label"></label>
+            <input asp-for="PatientName" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="DateOfBirth" class="form-label"></label>
+            <input asp-for="DateOfBirth" type="date" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Disease" class="form-label"></label>
+            <input asp-for="Disease" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="PhoneNumber" class="form-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="City" class="form-label"></label>
+            <input asp-for="City" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Country" class="form-label"></label>
+            <input asp-for="Country" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="ZipCode" class="form-label"></label>
+            <input asp-for="ZipCode" class="form-control" />
+        </div>
+    </div>
+
+    <!-- Physician-specific fields -->
+    <div id="physicianFields" style="display:none;">
+        <div class="form-group mb-3">
+            <label asp-for="DoctorName" class="form-label"></label>
+            <input asp-for="DoctorName" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Specialty" class="form-label"></label>
+            <input asp-for="Specialty" class="form-control" />
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="ContactNumber" class="form-label"></label>
+            <input asp-for="ContactNumber" class="form-control" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+@section Scripts {
+    <script>
+        // Toggle extra fields based on the selected role
+        document.querySelector('[name="Role"]').addEventListener('change', function () {
+            if (this.value === 'Patient') {
+                document.getElementById('patientFields').style.display = 'block';
+                document.getElementById('physicianFields').style.display = 'none';
+            } else {
+                document.getElementById('patientFields').style.display = 'none';
+                document.getElementById('physicianFields').style.display = 'block';
+            }
+        });
+    </script>
+}

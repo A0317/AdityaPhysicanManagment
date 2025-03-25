@@ -1,0 +1,45 @@
+﻿<table class="table">
+    <thead>
+        <tr>
+            <th>Appointment ID</th>
+            <th>Physician ID</th>
+            <th>Patient ID</th>
+            <th>Start Time</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var appointment in Model)
+            {
+                <tr>
+                    <td>@appointment.AppointmentId</td>
+                    <td>@appointment.PhysicianId</td>
+                    <td>@appointment.PatientId</td>
+                    <td>@appointment.StartTime</td>
+                    <td>
+                        @if (appointment.Status == 1)
+                        {
+                            <span class="badge bg-warning">Pending</span>
+                        }
+                        else if (appointment.Status == 2)
+                        {
+                            <span class="badge bg-success">Confirmed</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Rejected</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No appointments found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

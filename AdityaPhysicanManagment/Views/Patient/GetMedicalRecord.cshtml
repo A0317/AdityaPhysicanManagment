@@ -1,0 +1,45 @@
+﻿@model AdityaPhysicanManagment.Models.MedicalRecord
+
+@{
+    ViewData["Title"] = "Medical Record";
+}
+
+<h2>Medical Record</h2>
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>Appointment ID:</th>
+            <td>@Model.AppointmentId</td>
+        </tr>
+        <tr>
+            <th>Symptoms Reported:</th>
+            <td>@Model.SymptomsReported</td>
+        </tr>
+        <tr>
+            <th>Blood Pressure:</th>
+            <td>@Model.BloodPressure mmHg</td>
+        </tr>
+        <tr>
+            <th>Body Temperature:</th>
+            <td>@Model.BodyTemperature °F</td>
+        </tr>
+        <tr>
+            <th>Pulse Rate:</th>
+            <td>@Model.PulseRate bpm</td>
+        </tr>
+        <tr>
+            <th>Diagnosis:</th>
+            <td>@Model.Diagnosis</td>
+        </tr>
+        <tr>
+            <th>Prescription:</th>
+            <td>@Model.Prescription</td>
+        </tr>
+    </table>
+}
+else
+{
+    <p>No medical record found for this appointment.</p>
+}

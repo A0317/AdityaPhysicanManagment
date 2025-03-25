@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Patient Dashboard";
+}
+
+<!-- Include Bootstrap if not already included -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+<div class="container mt-4">
+    <h2>Patient Dashboard</h2>
+
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs" id="patientTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button">Register</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button">Book Appointment</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="appointments-tab" data-bs-toggle="tab" data-bs-target="#appointments" type="button">Appointments</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="medical-tab" data-bs-toggle="tab" data-bs-target="#medical" type="button">Medical Record</button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="register">
+            @await Html.PartialAsync("Register")
+        </div>
+        <div class="tab-pane fade" id="book">
+            @await Html.PartialAsync("BookAppointment")
+        </div>
+        
+
+        <div class="tab-pane fade" id="appointments">
+            @await Html.PartialAsync("GetAppointments")
+        </div>
+        <div class="tab-pane fade" id="medical">
+            @await Html.PartialAsync("GetMedicalRecord")
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

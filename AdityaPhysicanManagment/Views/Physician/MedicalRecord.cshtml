@@ -1,0 +1,33 @@
+﻿@model AdityaPhysicanManagment.Models.MedicalRecord
+
+<div>
+    <h3>Add or Update Medical Record</h3>
+    <form asp-action="AddOrUpdateMedicalRecord" method="post">
+        <input type="hidden" asp-for="AppointmentId" />
+        <div class="mb-3">
+            <label asp-for="SymptomsReported" class="form-label"></label>
+            <textarea asp-for="SymptomsReported" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="BloodPressure" class="form-label"></label>
+            <input asp-for="BloodPressure" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="BodyTemperature" class="form-label"></label>
+            <input asp-for="BodyTemperature" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="PulseRate" class="form-label"></label>
+            <input asp-for="PulseRate" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Diagnosis" class="form-label"></label>
+            <textarea asp-for="Diagnosis" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Prescription" class="form-label"></label>
+            <textarea asp-for="Prescription" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Medical Record</button>
+    </form>
+</div>

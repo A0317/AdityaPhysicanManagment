@@ -1,0 +1,48 @@
+﻿@model AdityaPhysicanManagment.Models.Appointment
+
+@{
+    ViewData["Title"] = "Book Appointment";
+}
+
+<h2>Book Appointment</h2>
+
+<form id="bookAppointmentForm" asp-controller="Patient" asp-action="BookAppointment" method="post">
+
+    @Html.AntiForgeryToken()
+
+    <!-- Display Patient Name -->
+    <div class="form-group">
+        <label>Patient Name</label>
+        <input type="text" class="form-control" value="@ViewBag.PatientName" readonly />
+        <input type="hidden" asp-for="PatientId" value="@ViewBag." />
+    </div>
+
+    <!-- Select Physician from Dropdown -->
+    <div class="form-group">
+        <label>Physician</label>
+        <select asp-for="PhysicianId" class="form-control" required>
+            <option value="">Select Physician</option>
+            @if (ViewBag.Doctors != null)
+            {
+                @foreach (var doctor in ViewBag.Doctors)
+                {
+                    <option value="@doctor.Id">@doctor.Name</option>
+                }
+            }
+        </select>
+    </div>
+
+    <!-- Appointment Date & Time -->
+    <div class="form-group">
+        <label asp-for="StartTime">Appointment Date & Time</label>
+        <input asp-for="StartTime" type="datetime-local" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Book Appointment</button>
+</form>
+
+<script>
+    document.getElementById("bookAppointmentForm").addEventListener("submit", function(event) {
+        console.log("📢 Form is being submitted...");
+    });
+</script>

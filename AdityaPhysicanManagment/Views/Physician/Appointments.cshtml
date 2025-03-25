@@ -1,0 +1,63 @@
+﻿@model List<AdityaPhysicanManagment.Models.Appointment>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Appointment ID</th>
+            <th>Patient ID</th>
+            <th>Start Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var appointment in Model)
+            {
+                <tr>
+                    <td>@appointment.AppointmentId</td>
+                    <td>@appointment.PatientId</td>
+                    <td>@appointment.StartTime</td>
+                    <td>
+                        @if (appointment.Status == 1)
+                        {
+                            <span class="badge bg-warning">Pending</span>
+                        }
+                        else if (appointment.Status == 2)
+                        {
+                            <span class="badge bg-success">Confirmed</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Rejected</span>
+                        }
+                    </td>
+                    <td>
+                        <!--
+                            Here, you can either use a form or link to update the status.
+                            For simplicity, the link passes appointmentId and a desired status value.
+                            You might want to implement a modal or a separate page for updating status.
+                        -->
+                        <a asp-action="UpdateAppointmentStatus" asp-route-appointmentId="@appointment.AppointmentId" asp-route-status="2" class="btn btn-sm btn-primary me-1">
+                            Confirm
+                        </a>
+                        <a asp-action="UpdateAppointmentStatus" asp-route-appointmentId="@appointment.AppointmentId" asp-route-status="3" class="btn btn-sm btn-danger me-1">
+                            Reject
+                        </a>
+                        <!-- Link to load the Medical Record form for this appointment -->
+                        <a asp-action="AddOrUpdateMedicalRecord" asp-route-appointmentId="@appointment.AppointmentId" class="btn btn-sm btn-info">
+                            Medical Record
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No appointments found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
